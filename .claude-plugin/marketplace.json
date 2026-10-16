@@ -1,0 +1,12 @@
+{
+  "name": "claude-mob",
+  "description": "CC Connect — управление Claude Code с телефона",
+  "owner": { "name": "fxm-inteligence" },
+  "plugins": [
+    {
+      "name": "cmob",
+      "source": "./plugin",
+      "description": "Пуши, ответы на вопросы агента, аппрув действий и новые задачи с телефона"
+    }
+  ]
+}
