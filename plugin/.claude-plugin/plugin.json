@@ -1,6 +1,6 @@
 {
   "name": "cmob",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "CC Connect: уведомления, ответы на вопросы агента, аппрув действий и новые задачи с телефона для Claude Code.",
   "author": { "name": "fxm-inteligence" },
   "homepage": "https://github.com/fxm-inteligence/CC-Connect",

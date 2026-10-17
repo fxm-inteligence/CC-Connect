@@ -7152,7 +7152,7 @@ var require_code = __commonJS({
     }
     exports._ = _;
     var plus = new _Code("+");
-    function str2(strs, ...args) {
+    function str3(strs, ...args) {
       const expr = [safeStringify(strs[0])];
       let i = 0;
       while (i < args.length) {
@@ -7163,7 +7163,7 @@ var require_code = __commonJS({
       optimize(expr);
       return new _Code(expr);
     }
-    exports.str = str2;
+    exports.str = str3;
     function addCodeArg(code, arg2) {
       if (arg2 instanceof _Code)
         code.push(...arg2._items);
@@ -7206,7 +7206,7 @@ var require_code = __commonJS({
       return;
     }
     function strConcat(c1, c2) {
-      return c2.emptyStr() ? c1 : c1.emptyStr() ? c2 : str2`${c1}${c2}`;
+      return c2.emptyStr() ? c1 : c1.emptyStr() ? c2 : str3`${c1}${c2}`;
     }
     exports.strConcat = strConcat;
     function interpolate(x) {
@@ -8168,22 +8168,22 @@ var require_util = __commonJS({
       return (0, codegen_1._)`${topSchemaRef}${schemaPath}${(0, codegen_1.getProperty)(keyword)}`;
     }
     exports.schemaRefOrVal = schemaRefOrVal;
-    function unescapeFragment(str2) {
-      return unescapeJsonPointer(decodeURIComponent(str2));
+    function unescapeFragment(str3) {
+      return unescapeJsonPointer(decodeURIComponent(str3));
     }
     exports.unescapeFragment = unescapeFragment;
-    function escapeFragment(str2) {
-      return encodeURIComponent(escapeJsonPointer(str2));
+    function escapeFragment(str3) {
+      return encodeURIComponent(escapeJsonPointer(str3));
     }
     exports.escapeFragment = escapeFragment;
-    function escapeJsonPointer(str2) {
-      if (typeof str2 == "number")
-        return `${str2}`;
-      return str2.replace(/~/g, "~0").replace(/\//g, "~1");
+    function escapeJsonPointer(str3) {
+      if (typeof str3 == "number")
+        return `${str3}`;
+      return str3.replace(/~/g, "~0").replace(/\//g, "~1");
     }
     exports.escapeJsonPointer = escapeJsonPointer;
-    function unescapeJsonPointer(str2) {
-      return str2.replace(/~1/g, "/").replace(/~0/g, "~");
+    function unescapeJsonPointer(str3) {
+      return str3.replace(/~1/g, "/").replace(/~0/g, "~");
     }
     exports.unescapeJsonPointer = unescapeJsonPointer;
     function eachItem(xs, f) {
@@ -9208,8 +9208,8 @@ var require_json_schema_traverse = __commonJS({
         post(schema, jsonPtr, rootSchema, parentJsonPtr, parentKeyword, parentSchema, keyIndex);
       }
     }
-    function escapeJsonPtr(str2) {
-      return str2.replace(/~/g, "~0").replace(/\//g, "~1");
+    function escapeJsonPtr(str3) {
+      return str3.replace(/~/g, "~0").replace(/\//g, "~1");
     }
   }
 });
@@ -10306,10 +10306,10 @@ var require_utils = __commonJS({
         isIPV6: true
       };
     }
-    function findToken(str2, token) {
+    function findToken(str3, token) {
       let ind = 0;
-      for (let i = 0; i < str2.length; i++) {
-        if (str2[i] === token) ind++;
+      for (let i = 0; i < str3.length; i++) {
+        if (str3[i] === token) ind++;
       }
       return ind;
     }
@@ -11323,7 +11323,7 @@ var require_core = __commonJS({
     var util_1 = require_util();
     var $dataRefSchema = require_data();
     var uri_1 = require_uri();
-    var defaultRegExp = (str2, flags) => new RegExp(str2, flags);
+    var defaultRegExp = (str3, flags) => new RegExp(str3, flags);
     defaultRegExp.code = "new RegExp";
     var META_IGNORE_OPTIONS = ["removeAdditional", "useDefaults", "coerceTypes"];
     var EXT_SCOPE_NAMES = /* @__PURE__ */ new Set([
@@ -12118,16 +12118,16 @@ var require_ucs2length = __commonJS({
   "node_modules/.pnpm/ajv@8.20.0/node_modules/ajv/dist/runtime/ucs2length.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    function ucs2length(str2) {
-      const len = str2.length;
+    function ucs2length(str3) {
+      const len = str3.length;
       let length = 0;
       let pos = 0;
       let value;
       while (pos < len) {
         length++;
-        value = str2.charCodeAt(pos++);
+        value = str3.charCodeAt(pos++);
         if (value >= 55296 && value <= 56319 && pos < len) {
-          value = str2.charCodeAt(pos);
+          value = str3.charCodeAt(pos);
           if ((value & 64512) === 56320)
             pos++;
         }
@@ -14010,8 +14010,8 @@ var require_formats = __commonJS({
     }
     var DATE = /^(\d\d\d\d)-(\d\d)-(\d\d)$/;
     var DAYS = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-    function date3(str2) {
-      const matches = DATE.exec(str2);
+    function date3(str3) {
+      const matches = DATE.exec(str3);
       if (!matches)
         return false;
       const year = +matches[1];
@@ -14030,8 +14030,8 @@ var require_formats = __commonJS({
     }
     var TIME = /^(\d\d):(\d\d):(\d\d(?:\.\d+)?)(z|([+-])(\d\d)(?::?(\d\d))?)?$/i;
     function getTime(strictTimeZone) {
-      return function time3(str2) {
-        const matches = TIME.exec(str2);
+      return function time3(str3) {
+        const matches = TIME.exec(str3);
         if (!matches)
           return false;
         const hr = +matches[1];
@@ -14077,8 +14077,8 @@ var require_formats = __commonJS({
     var DATE_TIME_SEPARATOR = /t|\s/i;
     function getDateTime(strictTimeZone) {
       const time3 = getTime(strictTimeZone);
-      return function date_time(str2) {
-        const dateTime = str2.split(DATE_TIME_SEPARATOR);
+      return function date_time(str3) {
+        const dateTime = str3.split(DATE_TIME_SEPARATOR);
         return dateTime.length === 2 && date3(dateTime[0]) && time3(dateTime[1]);
       };
     }
@@ -14103,13 +14103,13 @@ var require_formats = __commonJS({
     }
     var NOT_URI_FRAGMENT = /\/|:/;
     var URI = /^(?:[a-z][a-z0-9+\-.]*:)(?:\/?\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:]|%[0-9a-f]{2})*@)?(?:\[(?:(?:(?:(?:[0-9a-f]{1,4}:){6}|::(?:[0-9a-f]{1,4}:){5}|(?:[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){4}|(?:(?:[0-9a-f]{1,4}:){0,1}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){3}|(?:(?:[0-9a-f]{1,4}:){0,2}[0-9a-f]{1,4})?::(?:[0-9a-f]{1,4}:){2}|(?:(?:[0-9a-f]{1,4}:){0,3}[0-9a-f]{1,4})?::[0-9a-f]{1,4}:|(?:(?:[0-9a-f]{1,4}:){0,4}[0-9a-f]{1,4})?::)(?:[0-9a-f]{1,4}:[0-9a-f]{1,4}|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?))|(?:(?:[0-9a-f]{1,4}:){0,5}[0-9a-f]{1,4})?::[0-9a-f]{1,4}|(?:(?:[0-9a-f]{1,4}:){0,6}[0-9a-f]{1,4})?::)|[Vv][0-9a-f]+\.[a-z0-9\-._~!$&'()*+,;=:]+)\]|(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)|(?:[a-z0-9\-._~!$&'()*+,;=]|%[0-9a-f]{2})*)(?::\d*)?(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*|\/(?:(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)?|(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})+(?:\/(?:[a-z0-9\-._~!$&'()*+,;=:@]|%[0-9a-f]{2})*)*)(?:\?(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?(?:#(?:[a-z0-9\-._~!$&'()*+,;=:@/?]|%[0-9a-f]{2})*)?$/i;
-    function uri(str2) {
-      return NOT_URI_FRAGMENT.test(str2) && URI.test(str2);
+    function uri(str3) {
+      return NOT_URI_FRAGMENT.test(str3) && URI.test(str3);
     }
     var BYTE = /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/gm;
-    function byte(str2) {
+    function byte(str3) {
       BYTE.lastIndex = 0;
-      return BYTE.test(str2);
+      return BYTE.test(str3);
     }
     var MIN_INT32 = -(2 ** 31);
     var MAX_INT32 = 2 ** 31 - 1;
@@ -14123,11 +14123,11 @@ var require_formats = __commonJS({
       return true;
     }
     var Z_ANCHOR = /[^\\]\\Z/;
-    function regex(str2) {
-      if (Z_ANCHOR.test(str2))
+    function regex(str3) {
+      if (Z_ANCHOR.test(str3))
         return false;
       try {
-        new RegExp(str2);
+        new RegExp(str3);
         return true;
       } catch (e) {
         return false;
@@ -18384,7 +18384,9 @@ var Approval = external_exports.object({
   kind: external_exports.enum(["generic", "edit", "plan", "ask"]).optional(),
   edits: external_exports.array(FileEdit).optional(),
   plan: external_exports.string().optional(),
-  asks: external_exports.array(AskQuestion).optional()
+  asks: external_exports.array(AskQuestion).optional(),
+  /** Какое постоянное правило можно создать из этого запроса («Всегда разрешать git status …»). */
+  rule: external_exports.object({ tool: external_exports.string(), prefix: external_exports.string().optional(), label: external_exports.string() }).optional()
 });
 var Question = external_exports.object({
   id: external_exports.string(),
@@ -18399,6 +18401,23 @@ var QueuedPrompt = external_exports.object({
   text: external_exports.string(),
   at: external_exports.number()
 });
+var Rule = external_exports.object({
+  id: external_exports.string(),
+  tool: external_exports.string().max(80),
+  /** для Bash: команда должна начинаться с этой строки (и не содержать «склеивающих» символов оболочки) */
+  prefix: external_exports.string().max(200).optional(),
+  createdAt: external_exports.number()
+});
+var SessionFile = external_exports.object({
+  path: external_exports.string(),
+  /** сколько раз менялся */
+  edits: external_exports.number().int(),
+  /** последний раз файл записан целиком (Write / Add File) */
+  written: external_exports.boolean().optional(),
+  deleted: external_exports.boolean().optional(),
+  at: external_exports.number().optional()
+});
+var AttachMime = external_exports.enum(["image/jpeg", "image/png", "image/webp"]);
 var FeedItem = external_exports.object({ sessionId: external_exports.string(), kind: FeedKind, text: external_exports.string(), at: external_exports.number() });
 var ChatItem = external_exports.object({
   i: external_exports.number().int(),
@@ -18446,7 +18465,12 @@ var Prefs = external_exports.object({
   /** смещение часового пояса телефона (минуты к UTC), чтобы тихие часы считались по времени телефона */
   tzOffsetMin: external_exports.number().int().min(-840).max(840),
   /** через сколько минут простоя ПК включать «я не у ПК» автоматически; 0 — выключено */
-  autoAwayMinutes: external_exports.number().int().min(0).max(240)
+  autoAwayMinutes: external_exports.number().int().min(0).max(240),
+  /** пуш «агент завис»: сессия «работает», но событий нет столько минут */
+  notifyStuck: external_exports.boolean(),
+  stuckMinutes: external_exports.number().int().min(0).max(240),
+  /** сессии, по которым пуши не приходят (запросы разрешений всё равно видны в приложении) */
+  mutedSessions: external_exports.array(external_exports.string().max(100)).max(300)
 });
 var DEFAULT_PREFS = {
   notifyFinished: true,
@@ -18457,7 +18481,10 @@ var DEFAULT_PREFS = {
   progress: true,
   quietHours: { enabled: false, from: "23:00", to: "07:00" },
   tzOffsetMin: 0,
-  autoAwayMinutes: 0
+  autoAwayMinutes: 0,
+  notifyStuck: true,
+  stuckMinutes: 15,
+  mutedSessions: []
 };
 var ToPhone = external_exports.discriminatedUnion("t", [
   external_exports.object({
@@ -18470,8 +18497,13 @@ var ToPhone = external_exports.discriminatedUnion("t", [
     feed: external_exports.array(FeedItem),
     pcName: external_exports.string(),
     prefs: Prefs.optional(),
-    limits: external_exports.array(LimitInfo).optional()
+    limits: external_exports.array(LimitInfo).optional(),
+    rules: external_exports.array(Rule).optional()
   }),
+  external_exports.object({ t: external_exports.literal("rules.list"), rules: external_exports.array(Rule) }),
+  external_exports.object({ t: external_exports.literal("files.list"), sessionId: external_exports.string(), files: external_exports.array(SessionFile), error: external_exports.string().optional() }),
+  external_exports.object({ t: external_exports.literal("file.diff"), sessionId: external_exports.string(), path: external_exports.string(), edits: external_exports.array(FileEdit), error: external_exports.string().optional() }),
+  external_exports.object({ t: external_exports.literal("attach.ok"), uid: external_exports.string(), ok: external_exports.boolean(), error: external_exports.string().optional() }),
   external_exports.object({ t: external_exports.literal("limits"), limits: external_exports.array(LimitInfo) }),
   /** пульс: ПК жив и подключён к relay (телефон считает ПК офлайн, если пульса нет > 2.5 минут) */
   external_exports.object({ t: external_exports.literal("hb"), at: external_exports.number(), idleSeconds: external_exports.number().optional() }),
@@ -18516,7 +18548,27 @@ var ToPc = external_exports.discriminatedUnion("t", [
   }),
   external_exports.object({ t: external_exports.literal("prefs.set"), prefs: Prefs }),
   external_exports.object({ t: external_exports.literal("question.answer"), id: external_exports.string(), text: external_exports.string() }),
-  external_exports.object({ t: external_exports.literal("prompt.send"), id: external_exports.string(), sessionId: external_exports.string(), text: external_exports.string().max(2e4) }),
+  external_exports.object({
+    t: external_exports.literal("prompt.send"),
+    id: external_exports.string(),
+    sessionId: external_exports.string(),
+    text: external_exports.string().max(2e4),
+    /** идентификаторы ранее загруженных вложений (attach.chunk) */
+    attachments: external_exports.array(external_exports.string().max(40)).max(4).optional()
+  }),
+  /** часть изображения (base64); когда пришли все n частей, демон сохраняет файл и отвечает attach.ok */
+  external_exports.object({
+    t: external_exports.literal("attach.chunk"),
+    uid: external_exports.string().regex(/^[A-Za-z0-9_-]{6,40}$/),
+    i: external_exports.number().int().min(0).max(31),
+    n: external_exports.number().int().min(1).max(32),
+    mime: AttachMime,
+    data: external_exports.string().max(12e4)
+  }),
+  external_exports.object({ t: external_exports.literal("files.get"), sessionId: external_exports.string(), agent: AgentKind.optional() }),
+  external_exports.object({ t: external_exports.literal("file.diff"), sessionId: external_exports.string(), path: external_exports.string().max(1e3), agent: AgentKind.optional() }),
+  external_exports.object({ t: external_exports.literal("rule.add"), tool: external_exports.string().max(80), prefix: external_exports.string().max(200).optional() }),
+  external_exports.object({ t: external_exports.literal("rule.remove"), id: external_exports.string() }),
   external_exports.object({ t: external_exports.literal("prompt.cancel"), id: external_exports.string() }),
   external_exports.object({ t: external_exports.literal("away.set"), away: external_exports.boolean() }),
   /** открыть чат: последние `limit` записей или страница старше `before` */
@@ -18549,13 +18601,13 @@ function isDangerousCall(tool, summary) {
 // apps/bridge/src/bridge.ts
 import { timingSafeEqual } from "node:crypto";
 import http from "node:http";
-import { basename as basename2 } from "node:path";
+import { basename as basename2, join as join6 } from "node:path";
 
 // apps/bridge/src/config.ts
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir, hostname } from "node:os";
 import { join } from "node:path";
-var VERSION = "0.4.1";
+var VERSION = "0.5.0";
 var DEFAULTS = {
   relayUrl: process.env.CMOB_RELAY ?? "http://localhost:8787",
   port: Number(process.env.CMOB_PORT) || 47600,
@@ -18588,13 +18640,90 @@ function httpUrl(relayUrl) {
   return relayUrl.replace(/\/$/, "");
 }
 
+// apps/bridge/src/attachments.ts
+import { mkdirSync as mkdirSync2, readdirSync, rmSync, statSync, writeFileSync as writeFileSync2 } from "node:fs";
+import { join as join2 } from "node:path";
+var MAX_BYTES = 6 * 1024 * 1024;
+var MAX_PENDING = 8;
+var PENDING_TTL_MS = 5 * 6e4;
+var KEEP_MS = 24 * 36e5;
+var EXT = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
+function magicOk(mime, b) {
+  if (mime === "image/jpeg") return b.length > 4 && b[0] === 255 && b[1] === 216 && b[2] === 255;
+  if (mime === "image/png") return b.length > 8 && b.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  return b.length > 12 && b.subarray(0, 4).toString("latin1") === "RIFF" && b.subarray(8, 12).toString("latin1") === "WEBP";
+}
+var Attachments = class {
+  constructor(dir) {
+    this.dir = dir;
+  }
+  dir;
+  pending = /* @__PURE__ */ new Map();
+  /** загруженные файлы: uid → путь */
+  files = /* @__PURE__ */ new Map();
+  /** Принимает часть. Возвращает { done:false } пока не пришли все части, затем результат сохранения. */
+  chunk(uid, i, n, mime, data) {
+    this.expire();
+    let p = this.pending.get(uid);
+    if (!p) {
+      if (this.pending.size >= MAX_PENDING) return { done: true, ok: false, error: "\u0421\u043B\u0438\u0448\u043A\u043E\u043C \u043C\u043D\u043E\u0433\u043E \u043D\u0435\u0437\u0430\u0432\u0435\u0440\u0448\u0451\u043D\u043D\u044B\u0445 \u0437\u0430\u0433\u0440\u0443\u0437\u043E\u043A" };
+      p = { mime, n, parts: new Array(n).fill(void 0), at: Date.now() };
+      this.pending.set(uid, p);
+    }
+    if (p.n !== n || p.mime !== mime || i >= n) {
+      this.pending.delete(uid);
+      return { done: true, ok: false, error: "\u041D\u0435\u043A\u043E\u0440\u0440\u0435\u043A\u0442\u043D\u0430\u044F \u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0430" };
+    }
+    p.parts[i] = data;
+    if (p.parts.some((x) => x === void 0)) return { done: false };
+    this.pending.delete(uid);
+    const buf = Buffer.from(p.parts.join(""), "base64");
+    if (buf.length > MAX_BYTES) return { done: true, ok: false, error: "\u0424\u0430\u0439\u043B \u0441\u043B\u0438\u0448\u043A\u043E\u043C \u0431\u043E\u043B\u044C\u0448\u043E\u0439" };
+    if (!magicOk(mime, buf)) return { done: true, ok: false, error: "\u0424\u0430\u0439\u043B \u043D\u0435 \u043F\u043E\u0445\u043E\u0436 \u043D\u0430 \u0438\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0435" };
+    try {
+      mkdirSync2(this.dir, { recursive: true, mode: 448 });
+      const path = join2(this.dir, `${uid}.${EXT[mime]}`);
+      writeFileSync2(path, buf, { mode: 384 });
+      this.files.set(uid, path);
+      return { done: true, ok: true };
+    } catch (e) {
+      return { done: true, ok: false, error: e.message };
+    }
+  }
+  pathOf(uid) {
+    return this.files.get(uid);
+  }
+  expire() {
+    const cutoff = Date.now() - PENDING_TTL_MS;
+    for (const [k, v] of this.pending) if (v.at < cutoff) this.pending.delete(k);
+  }
+  /** Удаляет старые вложения. */
+  cleanup(now = Date.now()) {
+    this.expire();
+    try {
+      for (const f of readdirSync(this.dir)) {
+        const p = join2(this.dir, f);
+        if (now - statSync(p).mtimeMs > KEEP_MS) rmSync(p, { force: true });
+      }
+    } catch {
+    }
+    for (const [uid, p] of this.files) {
+      try {
+        statSync(p);
+      } catch {
+        this.files.delete(uid);
+      }
+    }
+  }
+};
+
 // apps/bridge/src/codex.ts
-import { copyFileSync, existsSync as existsSync2, mkdirSync as mkdirSync2, readFileSync as readFileSync2, writeFileSync as writeFileSync2 } from "node:fs";
+import { copyFileSync, existsSync as existsSync2, mkdirSync as mkdirSync3, readFileSync as readFileSync2, writeFileSync as writeFileSync3 } from "node:fs";
 import { homedir as homedir2 } from "node:os";
-import { dirname, join as join2, resolve } from "node:path";
+import { dirname, join as join3, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 function codexHome() {
-  return process.env.CODEX_HOME ?? join2(homedir2(), ".codex");
+  return process.env.CODEX_HOME ?? join3(homedir2(), ".codex");
 }
 var MARK_BEGIN = "# >>> cmob (managed) >>>";
 var MARK_END = "# <<< cmob (managed) <<<";
@@ -18661,21 +18790,22 @@ codex_hooks = true ${FEATURE_TAG}`);
 }
 function findSources() {
   const here = dirname(fileURLToPath(import.meta.url));
-  const candidates = [resolve(here, ".."), resolve(here, "../../../plugin")];
-  for (const root of candidates) {
-    const hook = join2(root, "hook.mjs");
-    const cmob = join2(root, "dist", "cmob.mjs");
-    if (existsSync2(hook) && existsSync2(cmob)) return { hook, cmob };
+  if (/cmob\.mjs$/.test(fileURLToPath(import.meta.url))) {
+    return { hook: "#!/usr/bin/env node\n// \u041C\u043E\u0441\u0442 \u043C\u0435\u0436\u0434\u0443 \u0445\u0443\u043A\u0430\u043C\u0438 Claude Code \u0438 \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u044B\u043C \u0434\u0435\u043C\u043E\u043D\u043E\u043C CC Connect. \u0411\u0435\u0437 \u0437\u0430\u0432\u0438\u0441\u0438\u043C\u043E\u0441\u0442\u0435\u0439.\n// \u041B\u044E\u0431\u0430\u044F \u043E\u0448\u0438\u0431\u043A\u0430 (\u043D\u0435\u0442 \u043A\u043E\u043D\u0444\u0438\u0433\u0430, \u0434\u0435\u043C\u043E\u043D \u043D\u0435 \u0437\u0430\u043F\u0443\u0449\u0435\u043D) = \u0442\u0438\u0445\u0438\u0439 \u0432\u044B\u0445\u043E\u0434 \u0441 \u043A\u043E\u0434\u043E\u043C 0: Claude \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u043A\u0430\u043A \u043E\u0431\u044B\u0447\u043D\u043E.\nimport http from 'node:http';\nimport { existsSync, readFileSync } from 'node:fs';\nimport { homedir } from 'node:os';\nimport { join } from 'node:path';\n\nconst slug = process.argv[2];\nif (!slug || !/^[a-z]+$/.test(slug)) process.exit(0);\n// \u043D\u0435\u043E\u0431\u044F\u0437\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u0439 \u0442\u0440\u0435\u0442\u0438\u0439 \u0430\u0440\u0433\u0443\u043C\u0435\u043D\u0442: \u043A\u0430\u043A\u043E\u0439 \u0430\u0433\u0435\u043D\u0442 \u043F\u0440\u0438\u0441\u043B\u0430\u043B \u0445\u0443\u043A (\u043F\u043E \u0443\u043C\u043E\u043B\u0447\u0430\u043D\u0438\u044E claude)\nconst agent = process.argv[3] === 'codex' ? 'codex' : 'claude';\n\nlet cfg;\ntry {\n  const p = join(process.env.CMOB_HOME || join(homedir(), '.cmob'), 'config.json');\n  if (!existsSync(p)) process.exit(0);\n  cfg = JSON.parse(readFileSync(p, 'utf8'));\n} catch {\n  process.exit(0);\n}\nif (!cfg?.port || !cfg?.hookToken) process.exit(0);\n\nconst chunks = [];\nprocess.stdin.on('data', (c) => chunks.push(c));\nprocess.stdin.on('error', () => process.exit(0));\nprocess.stdin.on('end', () => {\n  const payload = Buffer.concat(chunks);\n  const req = http.request(\n    {\n      host: '127.0.0.1',\n      port: cfg.port,\n      path: `/h/${cfg.hookToken}/${slug}${agent === 'codex' ? '?agent=codex' : ''}`,\n      method: 'POST',\n      headers: { 'content-type': 'application/json', 'content-length': payload.length },\n    },\n    (res) => {\n      const out = [];\n      res.on('data', (c) => out.push(c));\n      res.on('end', () => {\n        const body = Buffer.concat(out).toString('utf8').trim();\n        if (res.statusCode === 200 && body && body !== '{}') process.stdout.write(body);\n        process.exit(0);\n      });\n      res.on('error', () => process.exit(0));\n    },\n  );\n  req.on('error', () => process.exit(0));\n  req.end(payload);\n});\n", cmob: fileURLToPath(import.meta.url) };
   }
+  const root = resolve(here, "../../../plugin");
+  const hook = join3(root, "hook.mjs");
+  const cmob = join3(root, "dist", "cmob.mjs");
+  if (existsSync2(hook) && existsSync2(cmob)) return { hook: readFileSync2(hook, "utf8"), cmob };
   return null;
 }
 function planCodexInstall(cfg) {
   const sources = findSources();
-  if (!sources) throw new Error("\u041D\u0435 \u043D\u0430\u0448\u0451\u043B hook.mjs / dist/cmob.mjs \u043F\u043B\u0430\u0433\u0438\u043D\u0430. \u0421\u043E\u0431\u0435\u0440\u0438\u0442\u0435: pnpm build:plugin");
-  const hookScript = join2(homeDir(), "hook.mjs");
-  const cmobScript = join2(homeDir(), "cmob.mjs");
-  const hooksPath = join2(codexHome(), "hooks.json");
-  const tomlPath = join2(codexHome(), "config.toml");
+  if (!sources) throw new Error("\u041D\u0435 \u043D\u0430\u0448\u0451\u043B cmob.mjs. \u0417\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0435 \u043A\u043E\u043C\u0430\u043D\u0434\u0443 \u0438\u0437 \u0441\u043A\u0430\u0447\u0430\u043D\u043D\u043E\u0433\u043E cmob.mjs \u0438\u043B\u0438 \u0441\u043E\u0431\u0435\u0440\u0438\u0442\u0435: pnpm build:plugin");
+  const hookScript = join3(homeDir(), "hook.mjs");
+  const cmobScript = join3(homeDir(), "cmob.mjs");
+  const hooksPath = join3(codexHome(), "hooks.json");
+  const tomlPath = join3(codexHome(), "config.toml");
   const hooksBefore = existsSync2(hooksPath) ? JSON.parse(readFileSync2(hooksPath, "utf8")) : {};
   const tomlBefore = existsSync2(tomlPath) ? readFileSync2(tomlPath, "utf8") : "";
   return {
@@ -18692,25 +18822,25 @@ function backup(path) {
   if (existsSync2(path)) copyFileSync(path, `${path}.cmob-backup`);
 }
 function applyCodexInstall(plan) {
-  mkdirSync2(homeDir(), { recursive: true });
-  copyFileSync(plan.sources.hook, plan.hookScript);
-  copyFileSync(plan.sources.cmob, plan.cmobScript);
-  mkdirSync2(codexHome(), { recursive: true });
+  mkdirSync3(homeDir(), { recursive: true });
+  writeFileSync3(plan.hookScript, plan.sources.hook, "utf8");
+  if (resolve(plan.sources.cmob) !== resolve(plan.cmobScript)) copyFileSync(plan.sources.cmob, plan.cmobScript);
+  mkdirSync3(codexHome(), { recursive: true });
   backup(plan.hooksPath);
   backup(plan.tomlPath);
-  writeFileSync2(plan.hooksPath, JSON.stringify(plan.hooksAfter, null, 2) + "\n", "utf8");
-  writeFileSync2(plan.tomlPath, plan.tomlAfter, "utf8");
+  writeFileSync3(plan.hooksPath, JSON.stringify(plan.hooksAfter, null, 2) + "\n", "utf8");
+  writeFileSync3(plan.tomlPath, plan.tomlAfter, "utf8");
 }
 function applyCodexUninstall() {
-  const hooksPath = join2(codexHome(), "hooks.json");
-  const tomlPath = join2(codexHome(), "config.toml");
+  const hooksPath = join3(codexHome(), "hooks.json");
+  const tomlPath = join3(codexHome(), "config.toml");
   let changed = false;
   if (existsSync2(hooksPath)) {
     const before = readFileSync2(hooksPath, "utf8");
     const after = JSON.stringify(withoutCodexHooks(JSON.parse(before)), null, 2) + "\n";
     if (after !== before) {
       backup(hooksPath);
-      writeFileSync2(hooksPath, after, "utf8");
+      writeFileSync3(hooksPath, after, "utf8");
       changed = true;
     }
   }
@@ -18719,13 +18849,239 @@ function applyCodexUninstall() {
     const after = withoutCodexToml(before);
     if (after !== before) {
       backup(tomlPath);
-      writeFileSync2(tomlPath, after, "utf8");
+      writeFileSync3(tomlPath, after, "utf8");
       changed = true;
     }
   }
   return changed;
 }
 var CODEX_NOTE = "\u0414\u0430\u043B\u044C\u0448\u0435: \u043F\u0435\u0440\u0435\u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u0435 Codex \u0438 \u043E\u0442\u043A\u0440\u043E\u0439\u0442\u0435 /hooks \u2014 \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u0435 (trust) \u0445\u0443\u043A\u0438 CC Connect. \u0411\u0435\u0437 \u044D\u0442\u043E\u0433\u043E Codex \u0438\u0445 \u043D\u0435 \u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442.\n\u0420\u0430\u0431\u043E\u0442\u0430 \u0441 Codex \u043F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u0430 \u0442\u043E\u043B\u044C\u043A\u043E \u043D\u0430 \u0441\u0438\u043C\u0443\u043B\u044F\u0446\u0438\u0438 \u0435\u0433\u043E \u0444\u043E\u0440\u043C\u0430\u0442\u0430 \u0445\u0443\u043A\u043E\u0432; \u0435\u0441\u043B\u0438 \u0447\u0442\u043E-\u0442\u043E \u043D\u0435 \u0441\u0440\u0430\u0431\u0430\u0442\u044B\u0432\u0430\u0435\u0442 \u2014 \u0441\u043C. docs/spikes.md.";
+
+// apps/bridge/src/fileChanges.ts
+import { readFileSync as readFileSync3, statSync as statSync2 } from "node:fs";
+var MAX_BYTES2 = 48 * 1024 * 1024;
+var MAX_FILES = 200;
+var MAX_OPS_PER_FILE = 40;
+var PER_SIDE = 8e3;
+var TOTAL = 6e4;
+var str = (v) => typeof v === "string" ? v : "";
+var norm = (p) => p.replace(/\\/g, "/");
+function atOf(o) {
+  const v = o.timestamp;
+  if (typeof v === "string" || typeof v === "number") {
+    const n = typeof v === "number" ? v : Date.parse(v);
+    if (Number.isFinite(n)) return n;
+  }
+  return void 0;
+}
+function strings(v, out = [], depth = 0) {
+  if (depth > 4) return out;
+  if (typeof v === "string") out.push(v);
+  else if (Array.isArray(v)) for (const x of v) strings(x, out, depth + 1);
+  else if (v && typeof v === "object") for (const x of Object.values(v)) strings(x, out, depth + 1);
+  return out;
+}
+function splitPatch(raw) {
+  const begin = raw.indexOf("*** Begin Patch");
+  if (begin < 0) return [];
+  const body = raw.slice(begin).split("\n");
+  const out = [];
+  let cur = null;
+  const close = () => {
+    if (cur) out.push({ path: cur.path, kind: cur.kind, patch: cur.lines.join("\n") });
+    cur = null;
+  };
+  for (const line of body) {
+    const m = /^\*\*\* (Add|Update|Delete) File: (.+?)\s*$/.exec(line);
+    if (m) {
+      close();
+      cur = { path: m[2], kind: m[1] === "Add" ? "write" : m[1] === "Delete" ? "delete" : "edit", lines: [] };
+      continue;
+    }
+    if (/^\*\*\* End Patch/.test(line)) {
+      close();
+      break;
+    }
+    if (cur) cur.lines.push(line);
+  }
+  close();
+  return out;
+}
+function claudeOps(o, calls) {
+  const at = atOf(o);
+  const out = [];
+  if (o.type === "assistant" && Array.isArray(o.message?.content)) {
+    for (const b of o.message.content) {
+      if (!b || b.type !== "tool_use") continue;
+      const input = b.input && typeof b.input === "object" ? b.input : {};
+      const ops = [];
+      switch (b.name) {
+        case "Edit": {
+          const p = str(input.file_path);
+          if (p) ops.push({ path: p, kind: "edit", old: str(input.old_string), new: str(input.new_string), at });
+          break;
+        }
+        case "MultiEdit": {
+          const p = str(input.file_path);
+          if (p && Array.isArray(input.edits)) for (const e of input.edits) ops.push({ path: p, kind: "edit", old: str(e?.old_string), new: str(e?.new_string), at });
+          break;
+        }
+        case "Write": {
+          const p = str(input.file_path);
+          if (p) ops.push({ path: p, kind: "write", new: str(input.content), at });
+          break;
+        }
+        case "NotebookEdit": {
+          const p = str(input.notebook_path);
+          if (p) ops.push({ path: p, kind: "edit", new: str(input.new_source), at });
+          break;
+        }
+      }
+      if (ops.length) {
+        if (b.id) calls.set(String(b.id), ops);
+        out.push(...ops);
+      }
+    }
+  } else if (o.type === "user" && Array.isArray(o.message?.content)) {
+    for (const b of o.message.content) {
+      if (b?.type === "tool_result" && b.is_error) for (const op of calls.get(String(b.tool_use_id)) ?? []) op.failed = true;
+    }
+  }
+  return out;
+}
+function codexOps(o) {
+  if (o.type !== "response_item") return [];
+  const p = o.payload;
+  if (!p || !["function_call", "custom_tool_call", "local_shell_call"].includes(String(p.type))) return [];
+  const at = atOf(o);
+  const raw = p.arguments ?? p.input ?? p.action;
+  let value = raw;
+  if (typeof raw === "string") {
+    try {
+      value = JSON.parse(raw);
+    } catch {
+      value = raw;
+    }
+  }
+  const text2 = strings(value).find((s) => s.includes("*** Begin Patch"));
+  if (!text2) return [];
+  return splitPatch(text2).map((s) => ({ path: s.path, kind: s.kind, patch: s.patch, at }));
+}
+var cache = /* @__PURE__ */ new Map();
+function scanOps(path, agent) {
+  const st = statSync2(path);
+  const hit = cache.get(path);
+  if (hit && hit.size === st.size && hit.mtimeMs === st.mtimeMs) return hit.ops;
+  let text2 = readFileSync3(path, "utf8");
+  if (st.size > MAX_BYTES2) text2 = text2.slice(text2.length - MAX_BYTES2);
+  const ops = [];
+  const calls = /* @__PURE__ */ new Map();
+  for (const line of text2.split("\n")) {
+    if (!line || line.indexOf('"tool_use"') < 0 && line.indexOf("Begin Patch") < 0 && line.indexOf('"is_error":true') < 0) continue;
+    let o;
+    try {
+      o = JSON.parse(line);
+    } catch {
+      continue;
+    }
+    ops.push(...agent === "claude" ? claudeOps(o, calls) : codexOps(o));
+  }
+  const ok = ops.filter((x) => !x.failed);
+  cache.set(path, { size: st.size, mtimeMs: st.mtimeMs, ops: ok });
+  if (cache.size > 12) cache.delete(cache.keys().next().value);
+  return ok;
+}
+function summarizeOps(ops) {
+  const map = /* @__PURE__ */ new Map();
+  for (const op of ops) {
+    const key = norm(op.path);
+    const cur = map.get(key) ?? { path: op.path, edits: 0 };
+    cur.edits++;
+    cur.written = op.kind === "write" ? true : void 0;
+    cur.deleted = op.kind === "delete" ? true : void 0;
+    if (op.at) cur.at = op.at;
+    map.set(key, cur);
+  }
+  return [...map.values()].sort((a, b) => (b.at ?? 0) - (a.at ?? 0)).slice(0, MAX_FILES);
+}
+function diffFor(ops, path) {
+  const key = norm(path);
+  const mine = ops.filter((o) => norm(o.path) === key).slice(-MAX_OPS_PER_FILE);
+  let left = TOTAL;
+  const side2 = (s) => {
+    if (s === void 0) return { cut: false };
+    const n = Math.max(0, Math.min(PER_SIDE, left));
+    left -= Math.min(s.length, n);
+    return s.length > n ? { text: s.slice(0, n), cut: true } : { text: s, cut: false };
+  };
+  return mine.map((op) => {
+    if (op.patch !== void 0) {
+      const n2 = Math.max(0, Math.min(PER_SIDE * 2, left));
+      left -= Math.min(op.patch.length, n2);
+      return { path: op.path, patch: op.patch.length > n2 ? op.patch.slice(0, n2) : op.patch, truncated: op.patch.length > n2 || void 0 };
+    }
+    const o = side2(op.old);
+    const n = side2(op.new);
+    const e = { path: op.path };
+    if (o.text !== void 0) e.old = o.text;
+    if (n.text !== void 0) e.new = n.text;
+    if (o.cut || n.cut) e.truncated = true;
+    return e;
+  });
+}
+
+// apps/bridge/src/rules.ts
+var NEVER_RULE = /* @__PURE__ */ new Set(["AskUserQuestion", "ExitPlanMode"]);
+var SHELL = /* @__PURE__ */ new Set(["Bash"]);
+var WHOLE_TOOL = /^(Edit|Write|MultiEdit|NotebookEdit|WebFetch|WebSearch|mcp__[A-Za-z0-9_-]+)$/;
+var SUBCOMMAND = /* @__PURE__ */ new Set(["git", "npm", "pnpm", "yarn", "npx", "docker", "cargo", "go", "dotnet", "gh", "kubectl", "pip", "python", "python3", "node", "make", "bun"]);
+var CHAINING = /[;&|`<>\n\r]|\$\(|\$\{/;
+var clip = (s, n) => s.length > n ? s.slice(0, n - 1) + "\u2026" : s;
+var SENSITIVE_PATH = /(^|[\\/])(\.ssh|\.env[^\\/]*|\.git[\\/]hooks|\.claude|\.cmob|\.aws|\.npmrc|\.bashrc|\.zshrc|\.profile)([\\/]|$)|authorized_keys|id_rsa|id_ed25519/i;
+function pathOf(input) {
+  const p = input.file_path ?? input.notebook_path;
+  return typeof p === "string" ? p : "";
+}
+function commandOf(input) {
+  return typeof input.command === "string" ? input.command.trim() : "";
+}
+function suggestRule(tool, input) {
+  if (NEVER_RULE.has(tool)) return void 0;
+  if (SHELL.has(tool)) {
+    const cmd2 = commandOf(input);
+    if (!cmd2 || CHAINING.test(cmd2) || isDangerousCall(tool, cmd2)) return void 0;
+    const words = cmd2.split(/\s+/);
+    const first = words[0];
+    let prefix = first;
+    if (SUBCOMMAND.has(first) && words[1] && !words[1].startsWith("-")) prefix = `${first} ${words[1]}`;
+    if (prefix.length > 80) return void 0;
+    return { tool, prefix, label: `${tool}: ${prefix} \u2026` };
+  }
+  if (WHOLE_TOOL.test(tool)) return SENSITIVE_PATH.test(pathOf(input)) ? void 0 : { tool, label: tool };
+  return void 0;
+}
+function validRule(tool, prefix) {
+  if (NEVER_RULE.has(tool)) return false;
+  if (SHELL.has(tool)) {
+    if (!prefix || !prefix.trim() || CHAINING.test(prefix) || isDangerousCall(tool, prefix)) return false;
+    return true;
+  }
+  return !prefix && WHOLE_TOOL.test(tool);
+}
+function ruleMatches(rule, tool, input) {
+  if (rule.tool !== tool || NEVER_RULE.has(tool)) return false;
+  if (SHELL.has(tool)) {
+    const cmd2 = commandOf(input);
+    const p = rule.prefix ?? "";
+    if (!p || !cmd2.startsWith(p) || CHAINING.test(cmd2) || isDangerousCall(tool, cmd2)) return false;
+    const next = cmd2.charAt(p.length);
+    return next === "" || next === " " || next === "	";
+  }
+  return !rule.prefix && !SENSITIVE_PATH.test(pathOf(input));
+}
+function ruleText(r) {
+  return clip(r.prefix ? `${r.tool}: ${r.prefix} \u2026` : r.tool, 100);
+}
 
 // apps/bridge/src/idle.ts
 import { execFile } from "node:child_process";
@@ -18767,8 +19123,8 @@ async function getIdleSeconds() {
 }
 
 // apps/bridge/src/limits.ts
-import { existsSync as existsSync3, openSync, closeSync, readdirSync, readSync, statSync } from "node:fs";
-import { join as join3 } from "node:path";
+import { existsSync as existsSync3, openSync, closeSync, readdirSync as readdirSync2, readSync, statSync as statSync3 } from "node:fs";
+import { join as join4 } from "node:path";
 var WARN_AT = 90;
 var NAME = { claude: "Claude", codex: "Codex" };
 var WINDOW_LABEL = { "5h": "5 \u0447\u0430\u0441\u043E\u0432", week: "\u043D\u0435\u0434\u0435\u043B\u044F", other: "\u043B\u0438\u043C\u0438\u0442" };
@@ -18885,20 +19241,20 @@ var LimitTracker = class {
 };
 function newestChild(dir, dirs) {
   try {
-    const names = readdirSync(dir).filter((n) => dirs ? /^\d+$/.test(n) : n.endsWith(".jsonl")).sort();
-    return names.length ? join3(dir, names[names.length - 1]) : null;
+    const names = readdirSync2(dir).filter((n) => dirs ? /^\d+$/.test(n) : n.endsWith(".jsonl")).sort();
+    return names.length ? join4(dir, names[names.length - 1]) : null;
   } catch {
     return null;
   }
 }
 function latestCodexRollout(codexHome2) {
-  const root = join3(codexHome2, "sessions");
+  const root = join4(codexHome2, "sessions");
   if (!existsSync3(root)) return null;
   for (let y = newestChild(root, true); y; y = prevSibling(y)) {
     for (let m = newestChild(y, true); m; m = prevSibling(m)) {
       for (let d = newestChild(m, true); d; d = prevSibling(d)) {
         const f = newestChild(d, false);
-        if (f) return { path: f, mtimeMs: statSync(f).mtimeMs };
+        if (f) return { path: f, mtimeMs: statSync3(f).mtimeMs };
       }
     }
   }
@@ -18909,8 +19265,8 @@ function prevSibling(path) {
   const dir = path.slice(0, i);
   const name = path.slice(i + 1);
   try {
-    const older = readdirSync(dir).filter((n) => /^\d+$/.test(n) && n < name).sort();
-    return older.length ? join3(dir, older[older.length - 1]) : null;
+    const older = readdirSync2(dir).filter((n) => /^\d+$/.test(n) && n < name).sort();
+    return older.length ? join4(dir, older[older.length - 1]) : null;
   } catch {
     return null;
   }
@@ -18946,7 +19302,7 @@ function parseCodexRateLimits(tail, now = Date.now()) {
   return [];
 }
 function readTail(path, bytes = 256 * 1024) {
-  const size = statSync(path).size;
+  const size = statSync3(path).size;
   const start = Math.max(0, size - bytes);
   const fd = openSync(path, "r");
   try {
@@ -18964,8 +19320,10 @@ var PREF_FOR_KIND = {
   failed: "notifyFailed",
   approval: "notifyApproval",
   question: "notifyQuestion",
-  limit: "notifyLimits"
+  limit: "notifyLimits",
+  stuck: "notifyStuck"
 };
+var MUTABLE_KINDS = /* @__PURE__ */ new Set(["finished", "failed", "stuck"]);
 function readPrefs(raw) {
   const parsed = Prefs.safeParse({ ...DEFAULT_PREFS, ...typeof raw === "object" && raw ? raw : {} });
   return parsed.success ? parsed.data : DEFAULT_PREFS;
@@ -19071,14 +19429,14 @@ var RelayClient = class extends EventEmitter {
 };
 
 // apps/bridge/src/approvalInfo.ts
-import { existsSync as existsSync4, readFileSync as readFileSync3, statSync as statSync2 } from "node:fs";
+import { existsSync as existsSync4, readFileSync as readFileSync4, statSync as statSync4 } from "node:fs";
 import { isAbsolute, resolve as resolve2 } from "node:path";
-var PER_SIDE = 8e3;
-var TOTAL = 3e4;
+var PER_SIDE2 = 8e3;
+var TOTAL2 = 3e4;
 var OLD_FILE_MAX = 2e5;
-var str = (v) => typeof v === "string" ? v : "";
+var str2 = (v) => typeof v === "string" ? v : "";
 function side(s, budget) {
-  const n = Math.min(PER_SIDE, budget.left);
+  const n = Math.min(PER_SIDE2, budget.left);
   if (s.length <= n) {
     budget.left -= s.length;
     return { text: s, cut: false };
@@ -19099,32 +19457,32 @@ function readOld(path, cwd) {
   try {
     const p = isAbsolute(path) ? path : resolve2(cwd ?? process.cwd(), path);
     if (!existsSync4(p)) return void 0;
-    if (statSync2(p).size > OLD_FILE_MAX) return void 0;
-    return readFileSync3(p, "utf8");
+    if (statSync4(p).size > OLD_FILE_MAX) return void 0;
+    return readFileSync4(p, "utf8");
   } catch {
     return void 0;
   }
 }
 function describeApproval(tool, ti, cwd) {
-  const budget = { left: TOTAL };
+  const budget = { left: TOTAL2 };
   switch (tool) {
     case "Edit": {
-      const path = str(ti.file_path);
+      const path = str2(ti.file_path);
       if (!path) break;
-      return { kind: "edit", edits: [edit(path, str(ti.old_string), str(ti.new_string), budget)] };
+      return { kind: "edit", edits: [edit(path, str2(ti.old_string), str2(ti.new_string), budget)] };
     }
     case "MultiEdit": {
-      const path = str(ti.file_path);
+      const path = str2(ti.file_path);
       if (!path || !Array.isArray(ti.edits)) break;
-      return { kind: "edit", edits: ti.edits.slice(0, 30).map((e) => edit(path, str(e?.old_string), str(e?.new_string), budget)) };
+      return { kind: "edit", edits: ti.edits.slice(0, 30).map((e) => edit(path, str2(e?.old_string), str2(e?.new_string), budget)) };
     }
     case "Write": {
-      const path = str(ti.file_path);
+      const path = str2(ti.file_path);
       if (!path) break;
-      return { kind: "edit", edits: [edit(path, readOld(path, cwd), str(ti.content), budget)] };
+      return { kind: "edit", edits: [edit(path, readOld(path, cwd), str2(ti.content), budget)] };
     }
     case "ExitPlanMode": {
-      const plan = str(ti.plan);
+      const plan = str2(ti.plan);
       if (!plan) break;
       return { kind: "plan", plan: plan.length > 2e4 ? plan.slice(0, 2e4) + "\u2026" : plan };
     }
@@ -19132,10 +19490,10 @@ function describeApproval(tool, ti, cwd) {
       if (!Array.isArray(ti.questions)) break;
       const asks = [];
       for (const q2 of ti.questions.slice(0, 4)) {
-        const question = str(q2?.question);
+        const question = str2(q2?.question);
         if (!question) continue;
-        const options = Array.isArray(q2.options) ? q2.options.slice(0, 8).map((o) => ({ label: str(o?.label ?? o).slice(0, 120), description: str(o?.description).slice(0, 300) || void 0 })).filter((o) => o.label) : [];
-        asks.push({ question: question.slice(0, 1e3), header: str(q2.header).slice(0, 40) || void 0, options, multi: q2.multiSelect === true ? true : void 0 });
+        const options = Array.isArray(q2.options) ? q2.options.slice(0, 8).map((o) => ({ label: str2(o?.label ?? o).slice(0, 120), description: str2(o?.description).slice(0, 300) || void 0 })).filter((o) => o.label) : [];
+        asks.push({ question: question.slice(0, 1e3), header: str2(q2.header).slice(0, 40) || void 0, options, multi: q2.multiSelect === true ? true : void 0 });
       }
       if (asks.length) return { kind: "ask", asks };
       break;
@@ -19145,8 +19503,8 @@ function describeApproval(tool, ti, cwd) {
         const raw = [ti.input, ti.patch, ti.command, ti.cmd].find((v) => typeof v === "string" && v.includes("*** Begin Patch"));
         if (raw) {
           const files = [...raw.matchAll(/^\*\*\* (?:Update|Add|Delete) File: (.+)$/gm)].map((m) => m[1].trim());
-          const patch = raw.length > TOTAL ? raw.slice(0, TOTAL) : raw;
-          return { kind: "edit", edits: [{ path: files.join(", ") || "patch", patch, truncated: raw.length > TOTAL || void 0 }] };
+          const patch = raw.length > TOTAL2 ? raw.slice(0, TOTAL2) : raw;
+          return { kind: "edit", edits: [{ path: files.join(", ") || "patch", patch, truncated: raw.length > TOTAL2 || void 0 }] };
         }
       }
     }
@@ -19156,33 +19514,33 @@ function describeApproval(tool, ti, cwd) {
 var STOP_MESSAGE = `The user pressed "Stop" in the CC Connect phone app. Do not call any more tools. Reply with a brief summary of what you have done so far and what is left, then wait for the user's next instruction.`;
 
 // apps/bridge/src/transcript.ts
-import { closeSync as closeSync2, openSync as openSync2, readdirSync as readdirSync2, readFileSync as readFileSync4, readSync as readSync2, statSync as statSync3 } from "node:fs";
+import { closeSync as closeSync2, openSync as openSync2, readdirSync as readdirSync3, readFileSync as readFileSync5, readSync as readSync2, statSync as statSync5 } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { homedir as homedir3 } from "node:os";
-import { basename, join as join4 } from "node:path";
+import { basename, join as join5 } from "node:path";
 var TEXT_CAP = 8e3;
 var TOOL_CAP = 600;
 var RESULT_CAP = 1200;
 var FULL_CAP = 6e4;
 var MAX_INITIAL_BYTES = 24 * 1024 * 1024;
 var PAGE_BUDGET = 12e4;
-var clip = (s, n) => s.length > n ? s.slice(0, n - 1) + "\u2026" : s;
+var clip2 = (s, n) => s.length > n ? s.slice(0, n - 1) + "\u2026" : s;
 var ANSI = /\u001b\[[0-9;?]*[ -/]*[@-~]/g;
 var REMINDER = /<system-reminder>[\s\S]*?<\/system-reminder>/g;
-var claudeDir = () => process.env.CLAUDE_CONFIG_DIR || join4(homedir3(), ".claude");
-var codexDir = () => process.env.CODEX_HOME || join4(homedir3(), ".codex");
+var claudeDir = () => process.env.CLAUDE_CONFIG_DIR || join5(homedir3(), ".claude");
+var codexDir = () => process.env.CODEX_HOME || join5(homedir3(), ".codex");
 var validSessionId = (s) => /^[A-Za-z0-9_-]{8,80}$/.test(s);
 function mk(k, text2, cap, extra = {}) {
   const t = text2.replace(ANSI, "").trim();
   if (!t && !extra.tool) return null;
-  const r = { k, text: clip(t, cap), ...extra };
+  const r = { k, text: clip2(t, cap), ...extra };
   if (t.length > cap) {
     r.cut = true;
-    r.full = clip(t, FULL_CAP);
+    r.full = clip2(t, FULL_CAP);
   }
   return r;
 }
-function atOf(o) {
+function atOf2(o) {
   const v = o.timestamp;
   if (typeof v === "string" || typeof v === "number") {
     const n = typeof v === "number" ? v : Date.parse(v);
@@ -19230,7 +19588,7 @@ function claudeResultText(c) {
 }
 function parseClaudeLine(o, ctx) {
   if (o.isSidechain) return [];
-  const at = atOf(o);
+  const at = atOf2(o);
   const out = [];
   const push = (r) => {
     if (r) out.push({ ...r, at });
@@ -19279,7 +19637,7 @@ function parseClaudeLine(o, ctx) {
           const full = JSON.stringify(input, null, 2);
           if (full.length > r.text.length + 8) {
             r.cut = true;
-            r.full = clip(full, FULL_CAP);
+            r.full = clip2(full, FULL_CAP);
           }
           push(r);
         }
@@ -19312,7 +19670,7 @@ function codexShell(args) {
   return typeof cmd2 === "string" ? cmd2 : typeof a === "object" ? JSON.stringify(a) : String(a ?? "");
 }
 function parseCodexLine(o, ctx) {
-  const at = atOf(o);
+  const at = atOf2(o);
   const p = o.payload;
   if (!p || typeof p !== "object") return [];
   const out = [];
@@ -19340,7 +19698,7 @@ function parseCodexLine(o, ctx) {
         const r = mk("tool", line, TOOL_CAP, { tool: name });
         if (r && line.length > TOOL_CAP) {
           r.cut = true;
-          r.full = clip(line, FULL_CAP);
+          r.full = clip2(line, FULL_CAP);
         }
         push(r);
         return out;
@@ -19425,7 +19783,7 @@ var Transcript = class {
   refresh() {
     let st;
     try {
-      st = statSync3(this.path);
+      st = statSync5(this.path);
     } catch {
       return [];
     }
@@ -19468,7 +19826,7 @@ var Transcript = class {
     if (this.agent === "codex" && this.ctx.mode === "resp" && !this.sawResp && this.items.every((i) => i.k !== "user" && i.k !== "assistant") && this.size > 0) {
       const hasEvt = (() => {
         try {
-          return readFileSync4(this.path, "utf8").includes('"user_message"');
+          return readFileSync5(this.path, "utf8").includes('"user_message"');
         } catch {
           return false;
         }
@@ -19521,14 +19879,14 @@ var TranscriptCache = class {
 };
 function safeDirs(dir) {
   try {
-    return readdirSync2(dir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
+    return readdirSync3(dir, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
   } catch {
     return [];
   }
 }
 function safeFiles(dir) {
   try {
-    return readdirSync2(dir, { withFileTypes: true }).filter((d) => d.isFile() && d.name.endsWith(".jsonl")).map((d) => d.name);
+    return readdirSync3(dir, { withFileTypes: true }).filter((d) => d.isFile() && d.name.endsWith(".jsonl")).map((d) => d.name);
   } catch {
     return [];
   }
@@ -19541,19 +19899,19 @@ function listSessionFiles(opts = {}) {
   const files = [];
   const add = (agent, sessionId, path) => {
     try {
-      files.push({ agent, sessionId, path, mtimeMs: statSync3(path).mtimeMs });
+      files.push({ agent, sessionId, path, mtimeMs: statSync5(path).mtimeMs });
     } catch {
     }
   };
-  const proj = join4(claude, "projects");
-  for (const d of safeDirs(proj)) for (const f of safeFiles(join4(proj, d))) add("claude", f.slice(0, -6), join4(proj, d, f));
-  const sess = join4(codex, "sessions");
+  const proj = join5(claude, "projects");
+  for (const d of safeDirs(proj)) for (const f of safeFiles(join5(proj, d))) add("claude", f.slice(0, -6), join5(proj, d, f));
+  const sess = join5(codex, "sessions");
   for (const y of safeDirs(sess)) {
-    for (const m of safeDirs(join4(sess, y))) {
-      for (const d of safeDirs(join4(sess, y, m))) {
-        for (const f of safeFiles(join4(sess, y, m, d))) {
+    for (const m of safeDirs(join5(sess, y))) {
+      for (const d of safeDirs(join5(sess, y, m))) {
+        for (const f of safeFiles(join5(sess, y, m, d))) {
           const id = /([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\.jsonl$/i.exec(f)?.[1] ?? f.slice(0, -6);
-          add("codex", id, join4(sess, y, m, d, f));
+          add("codex", id, join5(sess, y, m, d, f));
         }
       }
     }
@@ -19586,7 +19944,7 @@ function sessionMeta(f) {
   let cwd;
   let firstUser = "";
   try {
-    const size = statSync3(f.path).size;
+    const size = statSync5(f.path).size;
     const head = readChunk(f.path, 0, Math.min(size, 16e4)).split("\n");
     const tail = size > 16e4 ? readChunk(f.path, Math.max(0, size - 6e4), 6e4).split("\n").slice(1) : [];
     const ctx = { tools: /* @__PURE__ */ new Map(), mode: "resp" };
@@ -19610,7 +19968,7 @@ function sessionMeta(f) {
     }
   } catch {
   }
-  const meta = { title: clip((title || firstUser || basename(cwd ?? f.sessionId)).replace(/\s+/g, " "), 80), cwd };
+  const meta = { title: clip2((title || firstUser || basename(cwd ?? f.sessionId)).replace(/\s+/g, " "), 80), cwd };
   metaCache.set(f.path, { mtimeMs: f.mtimeMs, meta });
   if (metaCache.size > 2e3) metaCache.delete(metaCache.keys().next().value);
   return meta;
@@ -19638,7 +19996,7 @@ async function listHistory(opts = {}) {
     scanned++;
     let text2;
     try {
-      if (statSync3(f.path).size > 64 * 1024 * 1024) continue;
+      if (statSync5(f.path).size > 64 * 1024 * 1024) continue;
       text2 = await readFile(f.path, "utf8");
     } catch {
       continue;
@@ -19675,8 +20033,9 @@ var CHAT_POLL_MS = 1500;
 var CHAT_WATCH_TTL_MS = 3 * 6e4;
 var ACTIVITY_THROTTLE_MS = 1200;
 var CHAT_SEND_BUDGET = 12e4;
+var STUCK_CHECK_MS = 6e4;
 var NEVER_AUTO = /* @__PURE__ */ new Set(["AskUserQuestion", "ExitPlanMode"]);
-var clip2 = (s, n) => s.length > n ? s.slice(0, n - 1) + "\u2026" : s;
+var clip3 = (s, n) => s.length > n ? s.slice(0, n - 1) + "\u2026" : s;
 function clipBytes(s, maxBytes) {
   if (Buffer.byteLength(s) <= maxBytes) return s;
   let lo = 0;
@@ -19689,10 +20048,10 @@ function clipBytes(s, maxBytes) {
   return s.slice(0, lo) + "\u2026";
 }
 function summarizeTool(tool, input) {
-  if (tool === "Bash") return clip2(String(input.command ?? ""), 300);
-  if (["Edit", "Write", "MultiEdit", "Read", "NotebookEdit"].includes(tool)) return clip2(String(input.file_path ?? input.notebook_path ?? ""), 300);
-  if (tool === "WebFetch") return clip2(String(input.url ?? ""), 300);
-  return clip2(JSON.stringify(input), 300);
+  if (tool === "Bash") return clip3(String(input.command ?? ""), 300);
+  if (["Edit", "Write", "MultiEdit", "Read", "NotebookEdit"].includes(tool)) return clip3(String(input.file_path ?? input.notebook_path ?? ""), 300);
+  if (tool === "WebFetch") return clip3(String(input.url ?? ""), 300);
+  return clip3(JSON.stringify(input), 300);
 }
 var Bridge = class {
   constructor(opts) {
@@ -19746,6 +20105,13 @@ var Bridge = class {
   stopRequests = /* @__PURE__ */ new Set();
   lastActivityAt = /* @__PURE__ */ new Map();
   lookedUp = /* @__PURE__ */ new Map();
+  /** последнее событие хука по сессии (для «агент завис») и сессии, о которых уже предупредили */
+  activityAt = /* @__PURE__ */ new Map();
+  stuckNotified = /* @__PURE__ */ new Set();
+  stuckTimer = null;
+  uploads = new Attachments(join6(homeDir(), "uploads"));
+  /** вложения, прикреплённые к сообщениям с телефона: id сообщения → пути файлов */
+  promptFiles = /* @__PURE__ */ new Map();
   get cfg() {
     return this.opts.cfg;
   }
@@ -19770,6 +20136,9 @@ var Bridge = class {
     this.idleTimer.unref();
     this.limitTimer = setInterval(() => this.checkLimits(), 3e4);
     this.limitTimer.unref();
+    this.stuckTimer = setInterval(() => this.checkStuck(), STUCK_CHECK_MS);
+    this.stuckTimer.unref();
+    this.uploads.cleanup();
     return port;
   }
   async stop() {
@@ -19778,6 +20147,7 @@ var Bridge = class {
     if (this.idleTimer) clearInterval(this.idleTimer);
     if (this.limitTimer) clearInterval(this.limitTimer);
     if (this.chatTimer) clearInterval(this.chatTimer);
+    if (this.stuckTimer) clearInterval(this.stuckTimer);
     for (const p of this.progress.values()) clearTimeout(p.timer);
     this.releaseAll();
     this.relay.close();
@@ -19787,6 +20157,7 @@ var Bridge = class {
   gc() {
     const cutoff = Date.now() - 36e5;
     for (const [id, s] of this.sessions) if (s.status === "ended" && s.updatedAt < cutoff) this.sessions.delete(id);
+    this.uploads.cleanup();
   }
   async refreshPeers() {
     try {
@@ -19817,9 +20188,25 @@ var Bridge = class {
   get prefs() {
     return readPrefs(this.cfg.prefs);
   }
-  /** Пуш шлём, только если «не у ПК», вид уведомления включён и сейчас не тихие часы. */
-  pushHint(text2, kind) {
+  /** Пуш шлём, только если «не у ПК», вид уведомления включён, сейчас не тихие часы и сессия не заглушена. */
+  pushHint(text2, kind, sid) {
+    if (sid && MUTABLE_KINDS.has(kind) && this.prefs.mutedSessions.includes(sid)) return void 0;
     return this.cfg.away && shouldPush(this.prefs, kind) ? { title: "CC Connect", body: text2 } : void 0;
+  }
+  /** «Агент завис»: сессия «работает», но хуки молчат дольше заданного времени (и она не ждёт вашего решения). */
+  checkStuck(now = Date.now()) {
+    const minutes = this.prefs.stuckMinutes;
+    if (!this.cfg.away || minutes <= 0) return;
+    for (const s of this.sessions.values()) {
+      if (s.status !== "working" || this.stuckNotified.has(s.sessionId)) continue;
+      if ([...this.approvals.values()].some((a) => a.approval.sessionId === s.sessionId)) continue;
+      const last = this.activityAt.get(s.sessionId);
+      if (!last || now - last < minutes * 6e4) continue;
+      this.stuckNotified.add(s.sessionId);
+      const text2 = `\u041D\u0435\u0442 \u0430\u043A\u0442\u0438\u0432\u043D\u043E\u0441\u0442\u0438 ${Math.round((now - last) / 6e4)} \u043C\u0438\u043D \u2014 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E, \u0430\u0433\u0435\u043D\u0442 \u0437\u0430\u0432\u0438\u0441 \u0438\u043B\u0438 \u0434\u043E\u043B\u0433\u043E \u0432\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u0442 \u043A\u043E\u043C\u0430\u043D\u0434\u0443`;
+      this.feed(s.sessionId, "info", text2);
+      this.broadcast({ t: "session.upsert", session: { ...s, accepting: this.holds.has(s.sessionId) } }, this.pushHint("\u0410\u0433\u0435\u043D\u0442, \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E, \u0437\u0430\u0432\u0438\u0441", "stuck", s.sessionId));
+    }
   }
   /** Лимиты не зависят от «не у ПК»: узнать, что лимит сбросился, нужно и тому, кто отошёл, и тому, кто просто ждёт. */
   applyLimitEvents(events) {
@@ -19881,7 +20268,8 @@ var Bridge = class {
       feed: this.feedLog.slice(-60),
       pcName: this.cfg.pcName,
       prefs: this.prefs,
-      limits: this.limits.list()
+      limits: this.limits.list(),
+      rules: this.cfg.rules ?? []
     };
   }
   /** Полные карточки разрешений; если вместе они не влезают в одно сообщение relay, лишнее (diff, план) отбрасывается. */
@@ -19974,13 +20362,45 @@ var Bridge = class {
           if (i >= 0) {
             list.splice(i, 1);
             if (list.length === 0) this.queued.delete(sid);
+            this.promptFiles.delete(c.id);
             this.broadcast({ t: "prompt.status", id: c.id, status: "dropped" });
           }
         }
         return;
       }
+      case "files.get":
+        this.sendFiles(peer, c.sessionId, c.agent);
+        return;
+      case "file.diff":
+        this.sendFileDiff(peer, c.sessionId, c.path, c.agent);
+        return;
+      case "rule.add": {
+        if (!validRule(c.tool, c.prefix?.trim() || void 0)) return;
+        const prefix = c.prefix?.trim() || void 0;
+        const rules = this.cfg.rules ?? [];
+        if (!rules.some((r) => r.tool === c.tool && r.prefix === prefix) && rules.length < 100) {
+          rules.push({ id: randomId(6), tool: c.tool, prefix, createdAt: Date.now() });
+          this.cfg.rules = rules;
+          this.opts.save();
+          this.log(`\u043F\u0440\u0430\u0432\u0438\u043B\u043E \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E: ${ruleText({ tool: c.tool, prefix })}`);
+        }
+        this.broadcast({ t: "rules.list", rules: this.cfg.rules ?? [] });
+        return;
+      }
+      case "rule.remove":
+        this.cfg.rules = (this.cfg.rules ?? []).filter((r) => r.id !== c.id);
+        this.opts.save();
+        this.broadcast({ t: "rules.list", rules: this.cfg.rules });
+        return;
+      case "attach.chunk": {
+        const r = this.uploads.chunk(c.uid, c.i, c.n, c.mime, c.data);
+        if (r.done) this.sendTo(peer, { t: "attach.ok", uid: c.uid, ok: r.ok, error: r.error });
+        return;
+      }
       case "prompt.send": {
         const prompt = { id: c.id, sessionId: c.sessionId, text: c.text, at: Date.now() };
+        const files = (c.attachments ?? []).map((u) => this.uploads.pathOf(u)).filter((p) => !!p);
+        if (files.length) this.promptFiles.set(c.id, files);
         const hold = this.holds.get(c.sessionId);
         if (hold) {
           this.holds.delete(c.sessionId);
@@ -20048,19 +20468,50 @@ var Bridge = class {
     const f = findSessionFile(sid, agent);
     if (f) this.transcriptPaths.set(sid, { agent: f.agent, path: f.path });
   }
+  journalOf(sid, agent) {
+    let known = this.transcriptPaths.get(sid);
+    if (!known) {
+      const f = findSessionFile(sid, agent);
+      if (!f) return void 0;
+      known = { agent: f.agent, path: f.path };
+      if (this.sessions.has(sid)) this.transcriptPaths.set(sid, known);
+    }
+    return known;
+  }
   transcriptFor(sid, agent) {
     try {
-      let known = this.transcriptPaths.get(sid);
-      if (!known) {
-        const f = findSessionFile(sid, agent);
-        if (!f) return void 0;
-        known = { agent: f.agent, path: f.path };
-        if (this.sessions.has(sid)) this.transcriptPaths.set(sid, known);
-      }
-      return this.transcripts.get(known.path, known.agent);
+      const known = this.journalOf(sid, agent);
+      return known ? this.transcripts.get(known.path, known.agent) : void 0;
     } catch (e) {
       this.log(`\u0447\u0430\u0442: ${e.message}`);
       return void 0;
+    }
+  }
+  // ───────────────────────── файлы сессии ─────────────────────────
+  sendFiles(peer, sessionId, agent) {
+    try {
+      const j = this.journalOf(sessionId, agent);
+      if (!j) {
+        this.sendTo(peer, { t: "files.list", sessionId, files: [], error: "\u0416\u0443\u0440\u043D\u0430\u043B \u044D\u0442\u043E\u0439 \u0441\u0435\u0441\u0441\u0438\u0438 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D \u043D\u0430 \u041F\u041A" });
+        return;
+      }
+      this.sendTo(peer, { t: "files.list", sessionId, files: summarizeOps(scanOps(j.path, j.agent)) });
+    } catch (e) {
+      this.log(`\u0444\u0430\u0439\u043B\u044B: ${e.message}`);
+      this.sendTo(peer, { t: "files.list", sessionId, files: [], error: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043F\u0440\u043E\u0447\u0438\u0442\u0430\u0442\u044C \u0436\u0443\u0440\u043D\u0430\u043B \u0441\u0435\u0441\u0441\u0438\u0438" });
+    }
+  }
+  sendFileDiff(peer, sessionId, path, agent) {
+    try {
+      const j = this.journalOf(sessionId, agent);
+      if (!j) {
+        this.sendTo(peer, { t: "file.diff", sessionId, path, edits: [], error: "\u0416\u0443\u0440\u043D\u0430\u043B \u044D\u0442\u043E\u0439 \u0441\u0435\u0441\u0441\u0438\u0438 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D \u043D\u0430 \u041F\u041A" });
+        return;
+      }
+      this.sendTo(peer, { t: "file.diff", sessionId, path, edits: diffFor(scanOps(j.path, j.agent), path) });
+    } catch (e) {
+      this.log(`diff: ${e.message}`);
+      this.sendTo(peer, { t: "file.diff", sessionId, path, edits: [], error: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043F\u0440\u043E\u0447\u0438\u0442\u0430\u0442\u044C \u0436\u0443\u0440\u043D\u0430\u043B \u0441\u0435\u0441\u0441\u0438\u0438" });
     }
   }
   chatGet(peer, sessionId, agent, before, limit) {
@@ -20168,11 +20619,18 @@ var Bridge = class {
   }
   deliver(sessionId, p) {
     this.touch(sessionId, { status: "working" });
-    this.feed(sessionId, "phone", p.text);
+    const files = this.promptFiles.get(p.id) ?? [];
+    this.promptFiles.delete(p.id);
+    this.feed(sessionId, "phone", files.length ? `${p.text}
+\u{1F4CE} \u0418\u0437\u043E\u0431\u0440\u0430\u0436\u0435\u043D\u0438\u0439: ${files.length}`.trim() : p.text);
     this.broadcast({ t: "prompt.status", id: p.id, status: "delivered" });
+    const attached = files.length ? `
+
+The user attached ${files.length} image${files.length > 1 ? "s" : ""} from their phone. Open ${files.length > 1 ? "them" : "it"} with your file-reading tool to look at ${files.length > 1 ? "them" : "it"}:
+` + files.map((f) => `- ${f}`).join("\n") : "";
     return {
       decision: "block",
-      reason: "The user sent a new instruction from their phone (CC Connect). Treat it as the user's next request and carry it out:\n\n" + p.text
+      reason: "The user sent a new instruction from their phone (CC Connect). Treat it as the user's next request and carry it out:\n\n" + (p.text || "(no text \u2014 see the attached image)") + attached
     };
   }
   hold(sessionId, signal) {
@@ -20202,6 +20660,8 @@ var Bridge = class {
   async onHook(event, input, signal, agent = "claude") {
     const sid = String(input.session_id ?? "unknown");
     this.noteTranscript(sid, agent, input.transcript_path);
+    this.activityAt.set(sid, Date.now());
+    this.stuckNotified.delete(sid);
     switch (event) {
       case "sessionstart":
         this.touch(sid, { status: "idle", cwd: input.cwd }, agent);
@@ -20210,6 +20670,8 @@ var Bridge = class {
       case "sessionend":
         this.stopRequests.delete(sid);
         this.lastActivityAt.delete(sid);
+        this.activityAt.delete(sid);
+        this.stuckNotified.delete(sid);
         this.touch(sid, { status: "ended", activity: void 0 }, agent);
         this.feed(sid, "info", "\u0421\u0435\u0441\u0441\u0438\u044F \u0437\u0430\u0432\u0435\u0440\u0448\u0435\u043D\u0430");
         this.sessionAllow.delete(sid);
@@ -20219,7 +20681,7 @@ var Bridge = class {
         this.stopRequests.delete(sid);
         this.touch(sid, { status: "working", cwd: input.cwd, activity: void 0 }, agent);
         this.pushChat(sid);
-        if (typeof input.prompt === "string") this.feed(sid, "user", clip2(input.prompt, 2e3));
+        if (typeof input.prompt === "string") this.feed(sid, "user", clip3(input.prompt, 2e3));
         return {};
       case "notification": {
         const type = String(input.notification_type ?? "");
@@ -20229,25 +20691,25 @@ var Bridge = class {
         return {};
       }
       case "stopfailure": {
-        const text2 = clip2(String(input.last_assistant_message ?? input.error ?? "\u041E\u0448\u0438\u0431\u043A\u0430"), 1e3);
+        const text2 = clip3(String(input.last_assistant_message ?? input.error ?? "\u041E\u0448\u0438\u0431\u043A\u0430"), 1e3);
         this.stopRequests.delete(sid);
         this.touch(sid, { status: "failed", cwd: input.cwd, lastMessage: text2, activity: void 0 }, agent);
         this.pushChat(sid);
         this.feed(sid, "failed", `${input.error ?? "error"}: ${text2}`);
         const limitEvents = input.error === "rate_limit" ? this.limits.hit(agent, `${text2} ${input.error_details ?? ""}`) : [];
-        this.broadcast({ t: "session.upsert", session: this.sessions.get(sid) }, limitEvents.length ? void 0 : this.pushHint("\u0410\u0433\u0435\u043D\u0442 \u043E\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u043B\u0441\u044F \u0441 \u043E\u0448\u0438\u0431\u043A\u043E\u0439", "failed"));
+        this.broadcast({ t: "session.upsert", session: this.sessions.get(sid) }, limitEvents.length ? void 0 : this.pushHint("\u0410\u0433\u0435\u043D\u0442 \u043E\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u043B\u0441\u044F \u0441 \u043E\u0448\u0438\u0431\u043A\u043E\u0439", "failed", sid));
         this.applyLimitEvents(limitEvents);
         return {};
       }
       case "stop": {
         const msg = String(input.last_assistant_message ?? "");
         this.stopRequests.delete(sid);
-        this.touch(sid, { status: "idle", cwd: input.cwd, lastMessage: clip2(msg, 500), activity: void 0 }, agent);
+        this.touch(sid, { status: "idle", cwd: input.cwd, lastMessage: clip3(msg, 500), activity: void 0 }, agent);
         this.pushChat(sid);
         this.applyLimitEvents(this.limits.recovered(agent));
         this.flushProgress(sid);
-        this.feed(sid, "finished", clip2(msg, 4e3) || "\u0410\u0433\u0435\u043D\u0442 \u0437\u0430\u043A\u043E\u043D\u0447\u0438\u043B");
-        if (this.cfg.away) this.broadcast({ t: "session.upsert", session: this.sessions.get(sid) }, this.pushHint("\u0410\u0433\u0435\u043D\u0442 \u0437\u0430\u043A\u043E\u043D\u0447\u0438\u043B \u0440\u0430\u0431\u043E\u0442\u0443", "finished"));
+        this.feed(sid, "finished", clip3(msg, 4e3) || "\u0410\u0433\u0435\u043D\u0442 \u0437\u0430\u043A\u043E\u043D\u0447\u0438\u043B");
+        if (this.cfg.away) this.broadcast({ t: "session.upsert", session: this.sessions.get(sid) }, this.pushHint("\u0410\u0433\u0435\u043D\u0442 \u0437\u0430\u043A\u043E\u043D\u0447\u0438\u043B \u0440\u0430\u0431\u043E\u0442\u0443", "finished", sid));
         const queued = this.takeQueued(sid);
         if (queued) return this.deliver(sid, queued);
         if (!this.cfg.away) return {};
@@ -20264,7 +20726,7 @@ var Bridge = class {
         const visible = this.cfg.away || this.hasWatchers(sid);
         const throttled = now - (this.lastActivityAt.get(sid) ?? 0) < ACTIVITY_THROTTLE_MS;
         if (!throttled) this.lastActivityAt.set(sid, now);
-        this.touch(sid, { status: "working", cwd: input.cwd, activity: clip2(`${tool}: ${toolLine(tool, ti).replace(/\s+/g, " ")}`, 120) }, agent, visible && !throttled ? "eph" : "none");
+        this.touch(sid, { status: "working", cwd: input.cwd, activity: clip3(`${tool}: ${toolLine(tool, ti).replace(/\s+/g, " ")}`, 120) }, agent, visible && !throttled ? "eph" : "none");
         this.pushChat(sid);
         return {};
       }
@@ -20286,8 +20748,13 @@ var Bridge = class {
         const tool = String(input.tool_name ?? "tool");
         const ti = input.tool_input ?? {};
         const summary = summarizeTool(tool, ti);
+        const rule = (this.cfg.rules ?? []).find((r) => ruleMatches(r, tool, ti));
+        if (rule) {
+          this.feed(sid, "info", `\u0410\u0432\u0442\u043E-\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u043E \u043F\u043E \u043F\u0440\u0430\u0432\u0438\u043B\u0443 (${ruleText(rule)}): ${clip3(summary, 120)}`);
+          return { hookSpecificOutput: { hookEventName: "PermissionRequest", decision: { behavior: "allow" } } };
+        }
         if (!NEVER_AUTO.has(tool) && this.sessionAllow.get(sid)?.has(tool) && !isDangerousCall(tool, summary)) {
-          this.feed(sid, "info", `\u0410\u0432\u0442\u043E-\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u043E (\u0434\u043B\u044F \u0441\u0435\u0441\u0441\u0438\u0438): ${tool} \u2014 ${clip2(summary, 120)}`);
+          this.feed(sid, "info", `\u0410\u0432\u0442\u043E-\u0440\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u043E (\u0434\u043B\u044F \u0441\u0435\u0441\u0441\u0438\u0438): ${tool} \u2014 ${clip3(summary, 120)}`);
           return { hookSpecificOutput: { hookEventName: "PermissionRequest", decision: { behavior: "allow" } } };
         }
         const approval = {
@@ -20295,9 +20762,10 @@ var Bridge = class {
           sessionId: sid,
           tool,
           summary,
-          detail: clip2(JSON.stringify(ti, null, 2), 4e3),
+          detail: clip3(JSON.stringify(ti, null, 2), 4e3),
           expiresAt: Date.now() + this.cfg.approvalSeconds * 1e3,
-          ...describeApproval(tool, ti, typeof input.cwd === "string" ? input.cwd : void 0)
+          ...describeApproval(tool, ti, typeof input.cwd === "string" ? input.cwd : void 0),
+          rule: suggestRule(tool, ti)
         };
         this.touch(sid, { cwd: input.cwd }, agent);
         const result = await new Promise((resolve3) => {
@@ -20354,8 +20822,8 @@ var Bridge = class {
     const question = {
       id,
       sessionId,
-      question: clip2(input.question, 4e3),
-      options: input.options?.slice(0, 8).map((o) => clip2(o, 80)),
+      question: clip3(input.question, 4e3),
+      options: input.options?.slice(0, 8).map((o) => clip3(o, 80)),
       expiresAt: Date.now() + 24 * 36e5
     };
     const result = await new Promise((resolve3) => {
@@ -20465,11 +20933,11 @@ var Bridge = class {
 };
 
 // apps/bridge/src/claudeSettings.ts
-import { copyFileSync as copyFileSync2, existsSync as existsSync5, mkdirSync as mkdirSync3, readFileSync as readFileSync5, writeFileSync as writeFileSync3 } from "node:fs";
+import { copyFileSync as copyFileSync2, existsSync as existsSync5, mkdirSync as mkdirSync4, readFileSync as readFileSync6, writeFileSync as writeFileSync4 } from "node:fs";
 import { homedir as homedir4 } from "node:os";
-import { dirname as dirname2, join as join5 } from "node:path";
+import { dirname as dirname2, join as join7 } from "node:path";
 function claudeSettingsPath() {
-  return process.env.CMOB_CLAUDE_SETTINGS ?? join5(homedir4(), ".claude", "settings.json");
+  return process.env.CMOB_CLAUDE_SETTINGS ?? join7(homedir4(), ".claude", "settings.json");
 }
 var OUR_URL = /^http:\/\/127\.0\.0\.1:\d+\/h\//;
 function hookSpecs(cfg) {
@@ -20490,7 +20958,7 @@ function isOurs2(group) {
 function readSettings() {
   const p = claudeSettingsPath();
   if (!existsSync5(p)) return {};
-  return JSON.parse(readFileSync5(p, "utf8"));
+  return JSON.parse(readFileSync6(p, "utf8"));
 }
 function withoutOurHooks(settings) {
   const out = { ...settings };
@@ -20526,13 +20994,13 @@ function describeChange(before, after) {
 }
 function writeSettings(next) {
   const p = claudeSettingsPath();
-  mkdirSync3(dirname2(p), { recursive: true });
+  mkdirSync4(dirname2(p), { recursive: true });
   let backup2 = null;
   if (existsSync5(p)) {
     backup2 = `${p}.cmob-backup`;
     copyFileSync2(p, backup2);
   }
-  writeFileSync3(p, JSON.stringify(next, null, 2) + "\n", "utf8");
+  writeFileSync4(p, JSON.stringify(next, null, 2) + "\n", "utf8");
   return backup2;
 }
 function hasLegacyHooks() {
@@ -20546,9 +21014,9 @@ function hasLegacyHooks() {
 
 // apps/bridge/src/mcp.ts
 import { spawn as spawn2 } from "node:child_process";
-import { mkdirSync as mkdirSync5, writeFileSync as writeFileSync4 } from "node:fs";
+import { mkdirSync as mkdirSync6, writeFileSync as writeFileSync5 } from "node:fs";
 import http2 from "node:http";
-import { join as join7 } from "node:path";
+import { join as join9 } from "node:path";
 
 // node_modules/.pnpm/zod@3.25.76/node_modules/zod/v4/core/core.js
 var NEVER2 = Object.freeze({
@@ -20763,14 +21231,14 @@ function promiseAllObject(promisesObj) {
 }
 function randomString(length = 10) {
   const chars = "abcdefghijklmnopqrstuvwxyz";
-  let str2 = "";
+  let str3 = "";
   for (let i = 0; i < length; i++) {
-    str2 += chars[Math.floor(Math.random() * chars.length)];
+    str3 += chars[Math.floor(Math.random() * chars.length)];
   }
-  return str2;
+  return str3;
 }
-function esc(str2) {
-  return JSON.stringify(str2);
+function esc(str3) {
+  return JSON.stringify(str3);
 }
 var captureStackTrace = Error.captureStackTrace ? Error.captureStackTrace : (..._args) => {
 };
@@ -20858,8 +21326,8 @@ var getParsedType2 = (data) => {
 };
 var propertyKeyTypes = /* @__PURE__ */ new Set(["string", "number", "symbol"]);
 var primitiveTypes = /* @__PURE__ */ new Set(["string", "number", "bigint", "boolean", "symbol", "undefined"]);
-function escapeRegex(str2) {
-  return str2.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function escapeRegex(str3) {
+  return str3.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 function clone(inst, def, params) {
   const cl = new inst._zod.constr(def ?? inst._zod.def);
@@ -23566,13 +24034,13 @@ function _array(Class2, element, params) {
   });
 }
 function _custom(Class2, fn, _params) {
-  const norm = normalizeParams(_params);
-  norm.abort ?? (norm.abort = true);
+  const norm2 = normalizeParams(_params);
+  norm2.abort ?? (norm2.abort = true);
   const schema = new Class2({
     type: "custom",
     check: "custom",
     fn,
-    ...norm
+    ...norm2
   });
   return schema;
 }
@@ -30887,9 +31355,9 @@ function qrText(text2, quiet = 2) {
 
 // apps/bridge/src/setup.ts
 import { randomBytes } from "node:crypto";
-import { closeSync as closeSync3, mkdirSync as mkdirSync4, openSync as openSync3, statSync as statSync4, truncateSync } from "node:fs";
+import { closeSync as closeSync3, mkdirSync as mkdirSync5, openSync as openSync3, statSync as statSync6, truncateSync } from "node:fs";
 import { spawn } from "node:child_process";
-import { join as join6 } from "node:path";
+import { join as join8 } from "node:path";
 async function initConfig(opts = {}) {
   const existing = loadConfig();
   const trim = (u) => u.replace(/\/+$/, "");
@@ -30954,13 +31422,13 @@ async function daemon(cfg, path, body) {
 }
 var sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 function daemonLogPath() {
-  return join6(homeDir(), "daemon.log");
+  return join8(homeDir(), "daemon.log");
 }
 function spawnDaemon() {
-  mkdirSync4(homeDir(), { recursive: true });
+  mkdirSync5(homeDir(), { recursive: true });
   const log = daemonLogPath();
   try {
-    if (statSync4(log).size > 1e6) truncateSync(log, 0);
+    if (statSync6(log).size > 1e6) truncateSync(log, 0);
   } catch {
   }
   const fd = openSync3(log, "a");
@@ -31054,9 +31522,9 @@ async function runMcpServer() {
         if (!st) return text(`\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u0437\u0430\u043F\u0443\u0441\u0442\u0438\u0442\u044C \u0434\u0435\u043C\u043E\u043D. \u041B\u043E\u0433: ${daemonLogPath()}`, true);
         const p = await createPairing(cfg);
         const png = qrPng(p.link);
-        mkdirSync5(homeDir(), { recursive: true });
-        const file = join7(homeDir(), "pair.png");
-        writeFileSync4(file, png);
+        mkdirSync6(homeDir(), { recursive: true });
+        const file = join9(homeDir(), "pair.png");
+        writeFileSync5(file, png);
         openFile(file);
         const warn = /localhost|127\.0\.0\.1/.test(cfg.relayUrl) ? `
 \u0412\u043D\u0438\u043C\u0430\u043D\u0438\u0435: relay (${cfg.relayUrl}) \u2014 \u043B\u043E\u043A\u0430\u043B\u044C\u043D\u044B\u0439 \u0430\u0434\u0440\u0435\u0441, \u0442\u0435\u043B\u0435\u0444\u043E\u043D \u0435\u0433\u043E \u043D\u0435 \u0443\u0432\u0438\u0434\u0438\u0442, \u0435\u0441\u043B\u0438 \u043D\u0435 \u0432 \u0442\u043E\u0439 \u0436\u0435 \u0441\u0435\u0442\u0438.` : "";
@@ -31178,7 +31646,8 @@ var HELP = `cmob \u2014 \u043C\u043E\u0441\u0442 \u043C\u0435\u0436\u0434\u0443 
   cmob away on|off                                 \u0440\u0435\u0436\u0438\u043C \xAB\u044F \u043D\u0435 \u0443 \u041F\u041A\xBB
   cmob install-hooks [--yes]                       \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u0445\u0443\u043A\u0438 \u0432 ~/.claude/settings.json
   cmob uninstall-hooks [--yes]                     \u0443\u0431\u0440\u0430\u0442\u044C \u043D\u0430\u0448\u0438 \u0445\u0443\u043A\u0438
-  cmob install-codex [--yes]                       \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C Codex (\u0445\u0443\u043A\u0438 + MCP ask_human)
+  cmob setup-codex [--relay URL] [--name \u0418\u041C\u042F]      \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C Codex \u0446\u0435\u043B\u0438\u043A\u043E\u043C, \u0431\u0435\u0437 Claude: \u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F \u041F\u041A, \u0445\u0443\u043A\u0438, \u0434\u0435\u043C\u043E\u043D, QR
+  cmob install-codex [--yes]                       \u0442\u043E\u043B\u044C\u043A\u043E \u0445\u0443\u043A\u0438 \u0438 MCP Codex (\u041F\u041A \u0443\u0436\u0435 \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u043D)
   cmob uninstall-codex                             \u0443\u0431\u0440\u0430\u0442\u044C \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435 Codex
   cmob mcp-config                                  \u043A\u0430\u043A \u043F\u043E\u0434\u043A\u043B\u044E\u0447\u0438\u0442\u044C MCP-\u0438\u043D\u0441\u0442\u0440\u0443\u043C\u0435\u043D\u0442 ask_human
   cmob unpair <deviceId>                           \u043E\u0442\u0432\u044F\u0437\u0430\u0442\u044C \u0442\u0435\u043B\u0435\u0444\u043E\u043D
@@ -31326,6 +31795,21 @@ function cmdInstallCodex(yes) {
   console.log(`\u0413\u043E\u0442\u043E\u0432\u043E (${codexHome()}).
 ${CODEX_NOTE}`);
 }
+async function cmdSetupCodex(values2) {
+  const { cfg, created } = await initConfig({ relay: values2.relay ? String(values2.relay) : process.env.CMOB_RELAY, name: values2.name ? String(values2.name) : void 0 });
+  console.log(created ? `\u041F\u041A \xAB${cfg.pcName}\xBB \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u043D \u043D\u0430 ${cfg.relayUrl}` : `\u041F\u041A \xAB${cfg.pcName}\xBB \u0443\u0436\u0435 \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u043D (${cfg.relayUrl})`);
+  if (/localhost|127\.0\.0\.1/.test(cfg.relayUrl)) console.log("\u0412\u043D\u0438\u043C\u0430\u043D\u0438\u0435: relay \u0443\u043A\u0430\u0437\u0430\u043D \u043A\u0430\u043A localhost \u2014 \u0442\u0435\u043B\u0435\u0444\u043E\u043D \u0435\u0433\u043E \u043D\u0435 \u0443\u0432\u0438\u0434\u0438\u0442. \u041F\u0435\u0440\u0435\u0434\u0430\u0439\u0442\u0435 --relay http://<\u0430\u0434\u0440\u0435\u0441>:8787");
+  const plan = planCodexInstall(cfg);
+  applyCodexInstall(plan);
+  console.log(`\u0425\u0443\u043A\u0438 \u0438 MCP-\u0441\u0435\u0440\u0432\u0435\u0440 \u0437\u0430\u043F\u0438\u0441\u0430\u043D\u044B \u0432 ${codexHome()} (\u043A\u043E\u043F\u0438\u0438: *.cmob-backup), \u0441\u043A\u0440\u0438\u043F\u0442\u044B \u2014 \u0432 ${homeDir()}`);
+  const st = await ensureDaemon(cfg);
+  console.log(st ? "\u0414\u0435\u043C\u043E\u043D \u0437\u0430\u043F\u0443\u0449\u0435\u043D." : `\u0414\u0435\u043C\u043E\u043D \u043D\u0435 \u0437\u0430\u043F\u0443\u0441\u0442\u0438\u043B\u0441\u044F (\u043B\u043E\u0433: ${daemonLogPath()}).`);
+  console.log(`
+${CODEX_NOTE}
+`);
+  if (cfg.peers.some((p) => p.kind === "phone")) console.log("\u0422\u0435\u043B\u0435\u0444\u043E\u043D \u0443\u0436\u0435 \u043F\u0440\u0438\u0432\u044F\u0437\u0430\u043D. \u041D\u043E\u0432\u044B\u0439 \u0442\u0435\u043B\u0435\u0444\u043E\u043D: cmob pair");
+  else await cmdPair();
+}
 function cmdUninstallCodex() {
   console.log(applyCodexUninstall() ? "\u041F\u043E\u0434\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u0435 Codex \u0443\u0431\u0440\u0430\u043D\u043E." : "\u0423 Codex \u043D\u0435\u0442 \u043D\u0430\u0448\u0438\u0445 \u0445\u0443\u043A\u043E\u0432 \u2014 \u0434\u0435\u043B\u0430\u0442\u044C \u043D\u0435\u0447\u0435\u0433\u043E.");
 }
@@ -31389,6 +31873,9 @@ try {
       break;
     case "uninstall-hooks":
       cmdUninstallHooks(!!values.yes);
+      break;
+    case "setup-codex":
+      await cmdSetupCodex(values);
       break;
     case "install-codex":
       cmdInstallCodex(!!values.yes);
