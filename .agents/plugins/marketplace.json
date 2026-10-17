@@ -1,0 +1,20 @@
+{
+  "name": "claude-mob",
+  "interface": {
+    "displayName": "CC Connect"
+  },
+  "plugins": [
+    {
+      "name": "cmob",
+      "source": {
+        "source": "local",
+        "path": "./plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

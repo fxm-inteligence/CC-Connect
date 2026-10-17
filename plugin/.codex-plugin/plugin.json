@@ -1,0 +1,22 @@
+{
+  "name": "cmob",
+  "version": "0.5.0",
+  "description": "CC Connect: уведомления, ответы на вопросы агента, аппрув действий и новые задачи с телефона для Codex.",
+  "author": { "name": "fxm-inteligence" },
+  "homepage": "https://github.com/fxm-inteligence/CC-Connect",
+  "repository": "https://github.com/fxm-inteligence/CC-Connect",
+  "license": "UNLICENSED",
+  "keywords": ["mobile", "notifications", "remote", "approvals"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "hooks": "./hooks/codex-hooks.json",
+  "interface": {
+    "displayName": "CC Connect",
+    "shortDescription": "Codex и Claude Code с телефона",
+    "longDescription": "Пуши, разрешения, ответы на вопросы агента и новые задачи с телефона. Данные идут через E2E-шифрованный канал.",
+    "developerName": "fxm-inteligence",
+    "category": "Productivity",
+    "capabilities": ["Interactive"],
+    "defaultPrompt": ["Подключи телефон"]
+  }
+}

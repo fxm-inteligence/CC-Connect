@@ -31440,9 +31440,18 @@ function spawnDaemon() {
   child.unref();
   closeSync3(fd);
 }
+function olderThan(a, b) {
+  const pa = a.split(".").map((x) => parseInt(x, 10));
+  const pb = b.split(".").map((x) => parseInt(x, 10));
+  for (let i = 0; i < 3; i++) {
+    if (Number.isNaN(pa[i]) || Number.isNaN(pb[i])) return a !== b;
+    if (pa[i] !== pb[i]) return pa[i] < pb[i];
+  }
+  return false;
+}
 async function ensureDaemon(cfg) {
   let st = await daemon(cfg, "status");
-  if (st && st.version !== VERSION) {
+  if (st && olderThan(st.version, VERSION)) {
     await daemon(cfg, "shutdown", {});
     for (let i = 0; i < 20 && await daemon(cfg, "status"); i++) await sleep(150);
     st = null;

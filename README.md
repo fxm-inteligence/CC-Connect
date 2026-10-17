@@ -8,7 +8,13 @@ claude plugin install cmob --marketplace fxm-inteligence/CC-Connect
 
 Затем начните новую сессию Claude и скажите: «подключи телефон». Подробности — в приложении, на экране «Подключите компьютер».
 
-**Только Codex, без Claude Code** (нужен Node.js 22+):
+**Codex** (без Claude Code; нужен Node.js 22+) — плагин:
+
+```
+codex plugin marketplace add fxm-inteligence/CC-Connect
+```
+
+Затем в Codex: /plugins → включить CC Connect → /hooks → подтвердить хуки → перезапуск → «подключи телефон». Если плагинов в вашем Codex нет, одна команда (не сочетайте с плагином):
 
 ```
 node -e "fetch('https://raw.githubusercontent.com/fxm-inteligence/CC-Connect/main/plugin/dist/cmob.mjs').then(r=>r.text()).then(t=>{require('fs').writeFileSync('cmob.mjs',t);require('child_process').spawnSync(process.execPath,['cmob.mjs','setup-codex'],{stdio:'inherit'})})"
